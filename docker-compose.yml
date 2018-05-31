@@ -20,7 +20,7 @@ services:
       - ~/Dev/php/redcap-hooks:/var/websites/redcap.medicine.wisc.edu/redcap-hooks
 
   db:
-    image: mysql
+    image: mysql:5.7
     ports:
       - '3400:3306'
     env_file:
