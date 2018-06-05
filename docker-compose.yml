@@ -5,6 +5,7 @@ services:
     build: app
     ports:
       - '8054:80'
+
     depends_on:
       - db
     env_file:
@@ -29,7 +30,14 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
 volumes:
   db-data:
     driver: local
+
 
