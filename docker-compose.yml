@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - /home/circleci/project/redcap-docker/www/:/var/www/html
+      - /home/circleci/project/redcap-docker/www/:/var/www/app/public_html
 
   db:
     image: mysql:5.7
