@@ -4,21 +4,12 @@ services:
   app:
     build: app
     ports:
-      - '8054:80'
+      - '8080:80'
 
     depends_on:
       - db
-    env_file:
-      - env/app.env
     volumes:
-      - ~/Dev/redcap-source/edocs:/var/websites/redcap.medicine.wisc.edu/edocs
-      - ~/Dev/php/redcap-source:/var/www/html
-
-      - ~/Dev/php/redcap-plugins:/var/www/html/plugins/
-      - ~/Dev/php/redcap-plugins:/var/websites/redcap.medicine.wisc.edu/redcap-plugins
-
-      - ~/Dev/php/redcap-hooks/hooks:/var/www/html/hooks/
-      - ~/Dev/php/redcap-hooks:/var/websites/redcap.medicine.wisc.edu/redcap-hooks
+      - /home/circleci/project/redcap-docker/www/:/var/www/html
 
   db:
     image: mysql:5.7
