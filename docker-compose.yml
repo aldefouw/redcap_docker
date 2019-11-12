@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ../www/:/var/www/app/public_html
+      - ../www/:/var/www/html
 
   db:
     image: mysql:5.7
@@ -18,10 +18,17 @@ services:
     env_file:
       - env/db.env
     restart: always
-    tmpfs: /var/lib/mysql
+    volumes:
+      - db-data:/var/lib/mysql
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:
       - "1025:1025"
       - "8025:8025"
+
+volumes:
+  db-data:
+    driver: local
+
+
