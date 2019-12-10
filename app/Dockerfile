@@ -1,4 +1,4 @@
-FROM naqoda/centos-apache-php
+FROM piuma/centos7-apache-php
 COPY php.ini /etc/
 RUN yum -y update
 RUN yum -y install git
