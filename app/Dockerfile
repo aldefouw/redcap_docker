@@ -1,4 +1,4 @@
-FROM fauria/lap
+FROM naqoda/centos-apache-php
 COPY php.ini /etc/
 RUN yum -y update
 RUN yum -y install git
