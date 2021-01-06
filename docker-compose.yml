@@ -10,7 +10,7 @@ services:
       - db
     volumes:
       - ../www/:/var/www/app/public_html
-      - ../temp/:/var/www/app/public_html/temp
+      - /var/tmp/:/var/www/app/public_html/temp
 
   db:
     image: mysql:5.7
