@@ -11,7 +11,7 @@ services:
     volumes:
       - ../www/:/var/www/app/public_html
       - /var/tmp/:/var/www/app/public_html/temp
-      - /var/tmp/edocs/:/var/www/app/public_html/edocs/
+      - ../edocs/:/var/www/app/public_html/edocs/
 
   db:
     image: mysql:5.7
