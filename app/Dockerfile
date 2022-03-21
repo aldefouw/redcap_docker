@@ -1,1 +1,1 @@
-FROM aldefouw/redcap_cypress_docker:v9.1.3
+FROM aldefouw/redcap_cypress_docker:v11.1.29
