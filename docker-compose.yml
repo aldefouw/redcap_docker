@@ -2,6 +2,7 @@ version: '3'
 
 services:
   app:
+    platform: linux/x86_64
     build: app
     ports:
       - '8080:80'
@@ -14,6 +15,7 @@ services:
       - /var/edocs/:/var/www/app/public_html/edocs:Z
 
   db:
+    platform: linux/x86_64
     image: mysql:5.7
     ports:
       - '3400:3306'
@@ -23,6 +25,7 @@ services:
     tmpfs: /var/lib/mysql
 
   mailhog:
+    platform: linux/x86_64
     image: mailhog/mailhog:v1.0.0
     ports:
       - "1025:1025"
