@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ../www/:/var/www/app/public_html
+      - ./www/:/var/www/app/public_html
       - /var/tmp/:/var/www/app/public_html/temp:Z
       - /var/edocs/:/var/www/app/public_html/edocs:Z
 
