@@ -12,8 +12,8 @@ services:
       - db
     volumes:
       - ../redcap_source/:/var/www/html/
-      - /var/tmp/:/var/www/html/temp:Z
-      - /var/edocs/:/var/www/html/edocs:Z
+      - ../tmp/:/var/www/html/temp:Z
+      - ../edocs/:/var/www/html/edocs:Z
 
   db:
     container_name: redcap_docker-db-1
