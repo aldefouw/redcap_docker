@@ -14,7 +14,7 @@ services:
       - ../redcap_source/:/var/www/html/
       - ../tmp/:/var/www/html/temp:Z
       - ../edocs/:/var/www/html/edocs:Z
-
+      - ../coverage-report/:/tmp/path/coverage-report:Z
   db:
     container_name: redcap_docker-db-1
     image: mysql:8.1

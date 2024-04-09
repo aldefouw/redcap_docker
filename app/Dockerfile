@@ -8,6 +8,10 @@ RUN apt-get update && \
 # Install PHP extensions.  This is key because REDCap uses MySQLi
 RUN docker-php-ext-install -j$(nproc) mysqli
 
+# Install xDebug
+RUN pecl install xdebug && \
+    docker-php-ext-enable xdebug
+
 # Configure Mailhog
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.19.4.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH /usr/local/go/bin:$PATH
@@ -17,6 +21,14 @@ RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 # Copy a php.ini and set the Mailhog path
 COPY php.ini /usr/local/etc/php
 RUN echo "sendmail_path = '/usr/bin/mhsendmail --smtp-addr=mailhog:1025'" >> /usr/local/etc/php/php.ini
+
+# Configure xDebug
+RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/php.ini && \
+    echo "xdebug.coverage_enable=1" >> /usr/local/etc/php/php.ini && \
+    echo "xdebug.coverage_output_dir=/var/www/html/coverage/" >> /usr/local/etc/php/php.ini && \
+    echo "memory_limit=512M" >> /usr/local/etc/php/php.ini && \
+    echo "auto_prepend_file	=/var/www/html/save-code-coverage.php" >> /usr/local/etc/php/php.ini && \
+    echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/php.ini
 
 # Expose port 80 for Apache.
 EXPOSE 80
