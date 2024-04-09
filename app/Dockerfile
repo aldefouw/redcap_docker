@@ -33,9 +33,6 @@ RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/php.ini && \
     echo "auto_prepend_file	=/var/www/html/save-code-coverage.php" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/php.ini
 
-RUN sudo mkdir /tmp/path/coverage/
-RUN sudo chmod 777 /tmp/path/coverage/
-
 # Expose port 80 for Apache.
 EXPOSE 80
 
