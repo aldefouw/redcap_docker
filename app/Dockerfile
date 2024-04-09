@@ -22,6 +22,9 @@ RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 COPY php.ini /usr/local/etc/php
 RUN echo "sendmail_path = '/usr/bin/mhsendmail --smtp-addr=mailhog:1025'" >> /usr/local/etc/php/php.ini
 
+# Download and install Composer
+RUN curl -Lsf https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Configure xDebug
 RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.coverage_enable=1" >> /usr/local/etc/php/php.ini && \
@@ -29,6 +32,9 @@ RUN echo "xdebug.mode=coverage" >> /usr/local/etc/php/php.ini && \
     echo "memory_limit=512M" >> /usr/local/etc/php/php.ini && \
     echo "auto_prepend_file	=/var/www/html/save-code-coverage.php" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/php.ini
+
+RUN mkdir /tmp/path/coverage/
+RUN chmod 777 /tmp/path/coverage/
 
 # Expose port 80 for Apache.
 EXPOSE 80
