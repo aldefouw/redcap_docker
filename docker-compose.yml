@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ../redcap_source/:/var/www/html/
+      - ../redcap_source/:/var/www/html/:Z
       - ../tmp/:/var/www/html/temp:Z
       - ../edocs/:/var/www/html/edocs:Z
       - ../coverage-report/:/tmp/path/coverage-report:Z
