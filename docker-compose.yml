@@ -7,7 +7,8 @@ services:
     build: app
     ports:
       - '8080:80'
-
+   environment:
+      - REDCAP_VERSION=${REDCAP_VERSION}
     depends_on:
       - db
     volumes:
