@@ -20,7 +20,7 @@ RUN echo "sendmail_path = '/usr/bin/mhsendmail --smtp-addr=mailhog:1025'" >> /us
 
 # Set up the entrypoint
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod -x /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Expose port 80 for Apache.
 EXPOSE 80
