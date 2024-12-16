@@ -18,8 +18,12 @@ RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 COPY php.ini /usr/local/etc/php
 RUN echo "sendmail_path = '/usr/bin/mhsendmail --smtp-addr=mailhog:1025'" >> /usr/local/etc/php/php.ini
 
+# Set up the entrypoint
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 # Expose port 80 for Apache.
 EXPOSE 80
 
 # Start Apache web server.
-CMD ["apache2-foreground"]
+CMD ["/docker-entrypoint.sh"]
